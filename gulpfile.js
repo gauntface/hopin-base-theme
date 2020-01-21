@@ -7,6 +7,7 @@ const fs = require('fs-extra');
 
 const themeSrc = path.join(__dirname, 'src');
 const themeDst = path.join(__dirname, 'build');
+const themeName = 'hopin-base-theme';
 
 gulp.task('clean', gulp.series(
   clean.gulpClean({
@@ -47,10 +48,8 @@ gulp.task('build', gulp.series(
   ),
 ))
 
-const themeName = 'hugo-base-theme';
-
 gulp.task('copy-into-site', async () => {
-  const themePath = path.join(__dirname, '..', themeName);
+  const themePath = path.join(__dirname, '..', `${themeName}-build`);
   const exists = await fs.exists(themePath);
   if (exists) {
     await fs.rmdir(themePath);
