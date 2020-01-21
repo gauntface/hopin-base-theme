@@ -50,3 +50,18 @@ There are a few optional parameters you will likely want to set in your site con
   }
 }
 ```
+
+### Step 5: Build via gulp
+
+You can build your theme like so:
+
+```
+gulp.task('build-hopin-base-theme',
+  gulp.series(async () => {
+    const {stdout, stderr} = await exec(`npm run build-into-site`, {
+      cwd: path.join(__dirname, 'themes', 'hopin-base-theme'),
+    });
+    console.log(stdout, stderr);
+  })
+);
+```
