@@ -1,0 +1,12 @@
+{
+  "baseURL": "https://example.gaunt.dev/",
+  "languageCode": "en-us",
+  "title": "Example Site",
+  "theme": ["hopin-base-theme"],
+  "publishDir": ".public",
+  "params": {
+    "description": "This is an example site",
+    "themecolor": "#FFFFFF",
+    "googleanalytics": "UA-123456789-1"
+ }
+}
