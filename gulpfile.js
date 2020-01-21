@@ -52,7 +52,7 @@ gulp.task('copy-into-site', async () => {
   const themePath = path.join(__dirname, '..', `${themeName}-build`);
   const exists = await fs.exists(themePath);
   if (exists) {
-    await fs.rmdir(themePath);
+    await fs.remove(themePath);
   }
   await fs.mkdirp(themePath);
   await fs.copy(themeDst, themePath);
