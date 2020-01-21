@@ -56,6 +56,11 @@ There are a few optional parameters you will likely want to set in your site con
 You can build your theme like so:
 
 ```
+const gulp = require('gulp');
+const {promisify} = require('util');
+const exec = promisify(require('child_process').exec);
+const path = require('path');
+
 gulp.task('build-hopin-base-theme',
   gulp.series(async () => {
     const {stdout, stderr} = await exec(`npm run build-into-site`, {
