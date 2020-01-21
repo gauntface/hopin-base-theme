@@ -7,19 +7,19 @@ This repo contains a theme to use as a base theme.
 ### Step 1A: Git submodule over SSH
 
 ```
-git submodule add git@github.com:gauntface/hopin-base-theme.git themes/hopin-base-theme
+git submodule add git@github.com:gauntface/hopin-base-theme.git themes-src/hopin-base-theme
 ```
 
 ### Step 1B: Git submodule over HTTP
 
 ```
-git submodule add https://github.com/gauntface/hopin-base-theme.git themes/hopin-base-theme
+git submodule add https://github.com/gauntface/hopin-base-theme.git themes-src/hopin-base-theme
 ```
 
 ### Step 2: Build Theme
 
 ```
-npm install && npm run build-into-site
+npm run build-into-site
 ```
 
 ### Step 3: Add to Config
@@ -33,7 +33,8 @@ Then add the `hopin-base-theme-build` to your sites config:
     "title": "...",
     "publishDir": ".public",
 
-    "theme": ["...", "hopin-base-theme-build"]
+    "theme": ["...", "hopin-base-theme-build"],
+    "ignore": [ "themes-src/.*" ]
 }
 ```
 
@@ -64,7 +65,7 @@ const path = require('path');
 gulp.task('build-hopin-base-theme',
   gulp.series(async () => {
     const {stdout, stderr} = await exec(`npm run build-into-site`, {
-      cwd: path.join(__dirname, 'themes', 'hopin-base-theme'),
+      cwd: path.join(__dirname, 'themes-src', 'hopin-base-theme'),
     });
     console.log(stdout, stderr);
   })
