@@ -2,7 +2,7 @@
   "name": "base-hugo-theme",
   "private": true,
   "scripts": {
-    "build-into-site": "gulp build-into-site"
+    "build-into-site": "npm install && gulp build-into-site"
   },
   "license": "MIT",
   "devDependencies": {
