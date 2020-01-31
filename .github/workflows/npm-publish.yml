@@ -10,6 +10,8 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
+    - name: Test
+      run: npm run test
     - name: Publish
       if: github.ref == 'refs/heads/master'
       uses: mikeal/merge-release@master
