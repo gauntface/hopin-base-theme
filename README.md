@@ -17,8 +17,8 @@ npm install --save @hopin/hugo-base-theme
 ```
 const basetheme = require('@hopin/hugo-base-theme');
 
-gulp.task('base-theme', () => {
-  return basetheme.copyTheme(path.join(__dirname, `themes`, 'hopin-base-theme');
+gulp.task('hopin-base-theme', () => {
+  return basetheme.copyTheme(path.join(__dirname, `themes`, 'hopin-base-theme'));
 })
 ```
 
