@@ -4,27 +4,25 @@ This repo contains a theme to use as a base theme.
 
 ## Installing
 
-### Step 1A: Git submodule over SSH
+### Step 1: Install via NPM
 
 ```
-git submodule add git@github.com:gauntface/hopin-base-theme.git themes-src/hopin-base-theme
+npm install --save @hopin/hugo-base-theme
 ```
 
-### Step 1B: Git submodule over HTTP
+### Step 2: Use via Gulp
 
 ```
-git submodule add https://github.com/gauntface/hopin-base-theme.git themes-src/hopin-base-theme
-```
+const basetheme = require('@hopin/hugo-base-theme');
 
-### Step 2: Build Theme
-
-```
-npm run build-into-site
+gulp.task('base-theme', () => {
+  return basetheme.copyTheme(path.join(__dirname, `themes`, 'hopin-base-theme');
+})
 ```
 
 ### Step 3: Add to Config
 
-Then add the `hopin-base-theme-build` to your sites config:
+Then add the `hopin-base-theme` to your sites config:
 
 ```
 {
@@ -33,8 +31,7 @@ Then add the `hopin-base-theme-build` to your sites config:
     "title": "...",
     "publishDir": ".public",
 
-    "theme": ["...", "hopin-base-theme-build"],
-    "ignore": [ "themes-src/.*" ]
+    "theme": ["...", "hopin-base-theme"],
 }
 ```
 
@@ -50,24 +47,4 @@ There are a few optional parameters you will likely want to set in your site con
     "googleanalytics": "UA-123456789-1"
   }
 }
-```
-
-### Step 5: Build via gulp
-
-You can build your theme like so:
-
-```
-const gulp = require('gulp');
-const {promisify} = require('util');
-const exec = promisify(require('child_process').exec);
-const path = require('path');
-
-gulp.task('build-hopin-base-theme',
-  gulp.series(async () => {
-    const {stdout, stderr} = await exec(`npm run build-into-site`, {
-      cwd: path.join(__dirname, 'themes-src', 'hopin-base-theme'),
-    });
-    console.log(stdout, stderr);
-  })
-);
 ```
