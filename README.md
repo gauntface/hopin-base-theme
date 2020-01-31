@@ -1,5 +1,7 @@
 # Hopin Base Hugo Theme
 
+![](https://github.com/gauntface/hopin-base-theme/workflows/.github/workflows/npm-publish.yml/badge.svg)
+
 This repo contains a theme to use as a base theme.
 
 ## Installing
