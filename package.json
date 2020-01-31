@@ -21,5 +21,9 @@
   },
   "files": [
     "build/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauntface/hopin-base-theme.git"
+  }
 }
