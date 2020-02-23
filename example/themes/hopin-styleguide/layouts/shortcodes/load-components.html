@@ -1,0 +1,44 @@
+{{- define "components-file" -}}
+  {{- $path := path.Dir $.filePath -}}
+  {{- $fileExt := path.Ext $.filePath -}}
+  {{- $fileName :=  strings.TrimSuffix $fileExt (path.Base $.filePath) -}}
+  {{- if (strings.HasSuffix $path "/partials/components") -}}
+    {{- if not (strings.HasSuffix $fileName ".styleguide") -}}
+      <h2>{{- $fileName -}}</h2>
+      {{- $origComponent := printf "components/%v%v" $fileName $fileExt -}}
+      {{- $renderComponent := $origComponent -}}
+
+      {{- $styleguideSpecific := printf "%v/%v.styleguide.html" $path $fileName -}}
+      {{- if (fileExists $styleguideSpecific) -}}
+        {{- $renderComponent = printf "components/%v.styleguide.html" $fileName -}}
+      {{- end -}}
+
+      {{- partial $renderComponent $.ctx.Page -}}
+
+      <h3>Code</h3>
+
+      <pre>
+        <code>{{"{{"}} partial "{{- $origComponent -}}" {{"}}"}}</code>
+      </pre>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "components-dir" -}}
+  {{- range (readDir $.dir) -}}
+    {{- $path := printf "%v/%v" $.dir .Name -}}
+    {{- if .IsDir -}}
+      {{- if not (eq $path "/themes/hopin-styleguide-build") -}}
+        {{- template "components-dir" (dict "dir" $path "ctx" $.ctx) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- template "components-file" (dict "filePath" $path "ctx" $.ctx) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $ctx := .}}
+
+{{- range (slice "/themes") -}}
+    {{- template "components-dir" (dict "dir" . "ctx" $ctx) -}}
+{{- end -}}

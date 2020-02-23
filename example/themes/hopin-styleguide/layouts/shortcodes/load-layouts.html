@@ -1,0 +1,49 @@
+{{- define "layouts-file" -}}
+  {{- $path := path.Dir $.filePath -}}
+  {{- $fileExt := path.Ext $.filePath -}}
+  {{- $fileName :=  strings.TrimSuffix $fileExt (path.Base $.filePath) -}}
+  {{- if and (strings.HasSuffix $path "/partials/layouts") (strings.HasSuffix $fileName "-open")}}
+    {{- $layoutName := strings.TrimSuffix "-open" $fileName -}}
+    <h2>{{- $layoutName -}}</h2>
+    {{- $openPath := printf "%v/%v-open.html" $path $layoutName -}}
+    {{- $closePath := printf "%v/%v-close.html" $path $layoutName -}}
+    {{- if and (fileExists $openPath) (fileExists $closePath) -}}
+      {{- $openLayout := printf "layouts/%v-open.html" $layoutName -}}
+      {{- $closeLayout := printf "layouts/%v-close.html" $layoutName -}}
+
+      <div class="n-hopin-styleguide-c-layout-example">
+        {{- partial $openLayout $.ctx.Page -}}
+        <p>This is some example content</p>
+        {{- partial $closeLayout $.ctx.Page -}}
+      </div>
+
+      <h3>Code</h3>
+
+      <pre>
+<code>{{"{{"}} partial "{{- $openLayout -}}" {{"}}"}}
+...
+{{"{{"}} partial "{{- $closeLayout -}}" {{"}}"}}</code>
+      </pre>
+
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "layouts-dir" -}}
+  {{- range (readDir $.dir) -}}
+    {{- $path := printf "%v/%v" $.dir .Name -}}
+    {{- if .IsDir -}}
+      {{- if not (eq $path "/themes/hopin-styleguide-build") -}}
+        {{- template "layouts-dir" (dict "dir" $path "ctx" $.ctx) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- template "layouts-file" (dict "filePath" $path "ctx" $.ctx) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $ctx := .}}
+
+{{- range (slice "/themes") -}}
+    {{- template "layouts-dir" (dict "dir" . "ctx" $ctx) -}}
+{{- end -}}

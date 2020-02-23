@@ -1,0 +1,33 @@
+{{ define "show-card"}}
+  {{ if or .Params.CardPartial .Params.CardContent }}
+  {{ partial "styleguide/components/styleguide-card.html" (dict "Title" .Title "RelPermalink" .RelPermalink "CardPartial" .Params.CardPartial "CardContent" .Params.CardContent) }}
+  {{ end }}
+{{ end }}
+
+{{ define "main" }}
+{{ partial "styleguide/layouts/main-open.html" . }}
+
+<div class="n-hopin-styleguide-l-list-grid">
+  {{ $sectionName := $.Site.Params.styleguideSection }}
+
+  <!-- First display the regular pages -->
+  {{ $pages := $.Site.RegularPages }}
+  {{if $sectionName }}
+    {{ $pages = where $.Site.RegularPages "Section" $sectionName }}
+  {{ end }}
+  {{ range $pages }}
+    {{ template "show-card" . }}
+  {{ end }}
+
+  <!-- Then display the index pages for subsections -->
+  {{ $sections := $.Site.Sections }}
+  {{if $sectionName }}
+    {{ $sections = ($.Site.GetPage "Section" $sectionName).Sections }}
+  {{ end }}
+  {{ range $sections }}
+    {{ template "show-card" . }}
+  {{ end }}
+</div>
+
+{{ partial "styleguide/layouts/main-close.html" . }}
+{{ end }}

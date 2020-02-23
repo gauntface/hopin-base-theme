@@ -2,7 +2,7 @@
   "baseURL": "https://example.gaunt.dev/",
   "languageCode": "en-us",
   "title": "Example Site",
-  "theme": ["hopin-base-theme"],
+  "theme": ["hopin-base-theme", "hopin-styleguide"],
   "publishDir": ".public",
   "params": {
     "description": "This is an example site",

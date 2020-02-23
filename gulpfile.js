@@ -4,11 +4,12 @@ const tsBrowser = require('@hopin/wbt-ts-browser');
 const css = require('@hopin/wbt-css');
 const clean = require('@hopin/wbt-clean');
 const fs = require('fs-extra');
+const hopinstyleguide = require('@hopin/hugo-styleguide');
+const basetheme = require('./index');
 
 const themeSrc = path.join(__dirname, 'src');
 const themeDst = path.join(__dirname, 'build');
 const themeName = 'hopin-base-theme';
-const themeInSitePath = path.join(__dirname, '..', '..', `themes`, `${themeName}-build`);
 
 gulp.task('clean', gulp.series(
   clean.gulpClean({
@@ -50,12 +51,15 @@ gulp.task('build', gulp.series(
 ))
 
 gulp.task('copy-into-site', async () => {
-  const exists = await fs.exists(themeInSitePath);
-  if (exists) {
-    await fs.remove(themeInSitePath);
-  }
-  await fs.mkdirp(themeInSitePath);
-  await fs.copy(themeDst, themeInSitePath);
+  basetheme.copyTheme(path.join(__dirname, `example`, 'themes', `hopin-base-theme`));
+})
+
+gulp.task('styleguide-theme', () => {
+  return hopinstyleguide.copyTheme(path.join(__dirname, `example`, `themes`, 'hopin-styleguide'));
+})
+
+gulp.task('styleguide-content', () => {
+  return hopinstyleguide.copyContent(path.join(__dirname, `example`, `content`, 'styleguide'));
 })
 
 gulp.task('build-into-site', gulp.series(
@@ -63,6 +67,12 @@ gulp.task('build-into-site', gulp.series(
   'copy-into-site',
 ))
 
-gulp.task('watch', () => gulp.watch([path.join(themeSrc, '**', '*')], {
-  ignoreInitial: false,
-}, gulp.series('build')))
+gulp.task('watch', 
+  gulp.series(
+    'styleguide-theme',
+    'styleguide-content',
+    () => gulp.watch([path.join(themeSrc, '**', '*')], {
+      ignoreInitial: false,
+    }, gulp.series('build-into-site')),
+  )
+)

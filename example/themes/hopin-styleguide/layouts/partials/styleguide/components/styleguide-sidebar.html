@@ -1,0 +1,27 @@
+<div class="n-hopin-styleguide-c-sidebar">
+  <ul class="n-hopin-styleguide-c-sidebar__list">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.styleguide }}
+        {{ if .HasChildren }}
+            <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+              {{ .Name }}
+            </li>
+            <li>
+              <ul class="sub-menu">
+                  {{ range .Children }}
+                      <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                          <a href="{{ .URL }}">{{ .Name }}</a>
+                      </li>
+                  {{ end }}
+              </ul>
+            </li>
+        {{ else }}
+            <li>
+              <a href="{{ .URL }}">
+                {{ .Name }}
+              </a>
+            </li>
+        {{ end }}
+    {{ end }}
+  </ul>
+</div>
