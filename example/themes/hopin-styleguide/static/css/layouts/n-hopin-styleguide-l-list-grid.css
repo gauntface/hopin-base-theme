@@ -1,1 +1,0 @@
-.n-hopin-styleguide-l-list-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));grid-template-columns:repeat(auto-fill,minmax(var(--hopin-swatch-min-width,200px),1fr));grid-row-gap:40px;grid-row-gap:var(--hopin-home-item-vert-gap,40px);grid-column-gap:80px;grid-column-gap:var(--hopin-home-item-hori-gap,80px)}
