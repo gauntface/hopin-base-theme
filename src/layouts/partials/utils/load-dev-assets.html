@@ -30,6 +30,8 @@
 
 {{- if $.Site.IsServer -}}
 {{- range (slice "/themes" "/static") }}
+  {{- if (fileExists .) -}}
   {{ template "dev-assets-dir" (dict "dir" .) }}
+  {{- end -}}
 {{ end -}}
 {{- end -}}
