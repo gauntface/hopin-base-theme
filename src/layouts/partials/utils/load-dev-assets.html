@@ -6,12 +6,12 @@
     {{- $path := index $sections 1 -}}
 
     <!-- Add all the css files. -->
-    {{- if and (strings.HasSuffix $path ".css") (not (strings.HasSuffix $path ".min.css")) -}}
+    {{- if (strings.HasSuffix $path ".dev.css") -}}
       <link rel="stylesheet" href="{{- $path -}}">
     {{ end -}}
 
     <!-- Add all the JS files. -->
-    {{- if and (strings.HasSuffix $path "js") (not (strings.HasSuffix $path ".min.js")) -}}
+    {{- if (strings.HasSuffix $path ".dev.js") -}}
       <script type="text/javascript" src="{{- $path -}}"></script>
     {{ end -}}
   {{- end -}}
