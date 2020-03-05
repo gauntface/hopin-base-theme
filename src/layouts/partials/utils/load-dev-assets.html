@@ -1,37 +1,37 @@
 <!-- Since we are in a dev environment, we want the unminified version of everything -->
-{{- define "dev-assets-file" -}}
+{{- define "base-load-dev-assets-file" -}}
   {{- if not (strings.HasPrefix $.name "_") -}}
     <!-- For each static directory we want to strip anything before static -->
     {{- $sections := split $.path "static" -}}
     {{- $path := index $sections 1 -}}
 
     <!-- Add all the css files. -->
-    {{- if (strings.HasSuffix $path ".dev.css") -}}
+    {{- if (strings.HasSuffix $path ".css") -}}
       <link rel="stylesheet" href="{{- $path -}}">
     {{ end -}}
 
     <!-- Add all the JS files. -->
-    {{- if (strings.HasSuffix $path ".dev.js") -}}
+    {{- if (strings.HasSuffix $path ".js") -}}
       <script type="text/javascript" src="{{- $path -}}"></script>
     {{ end -}}
   {{- end -}}
 {{- end -}}
 
-{{- define "dev-assets-dir" -}}
+{{- define "base-load-dev-assets-dir" -}}
   {{- range (readDir $.dir) -}}
     {{- $path := printf "%v/%v" $.dir .Name -}}
     {{- if .IsDir -}}
-      {{- template "dev-assets-dir" (dict "dir" $path) -}}
+      {{- template "base-load-dev-assets-dir" (dict "dir" $path) -}}
     {{- else -}}
-      {{- template "dev-assets-file" (dict "path" $path "name" .Name) -}}
+      {{- template "base-load-dev-assets-file" (dict "path" $path "name" .Name) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- if $.Site.IsServer -}}
+{{- if (not (eq hugo.Environment "production")) -}}
 {{- range (slice "/themes" "/static") }}
   {{- if (fileExists .) -}}
-  {{ template "dev-assets-dir" (dict "dir" .) }}
+  {{ template "base-load-dev-assets-dir" (dict "dir" .) }}
   {{- end -}}
 {{ end -}}
 {{- end -}}

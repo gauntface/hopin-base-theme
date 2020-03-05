@@ -24,7 +24,7 @@ gulp.task('typescript', gulp.series(
 ))
 
 gulp.task('css', gulp.series(
-  css.gulpBuildAll({
+  css.gulpBuild({
     src: themeSrc,
     dst: themeDst,
   }, {
@@ -95,6 +95,7 @@ gulp.task('restart-server', async () => {
 
 gulp.task('watch', 
   gulp.series(
+    'build-into-site',
     'styleguide-theme',
     'styleguide-content',
     gulp.parallel(
