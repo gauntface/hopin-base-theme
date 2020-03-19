@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@hopin/hugo-styleguide": "0.0.81",
+    "@hopin/hugo-styleguide": "0.0.82",
     "@hopin/wbt-clean": "0.0.55",
     "@hopin/wbt-css": "0.0.56",
     "@hopin/wbt-ts-browser": "0.0.54",
