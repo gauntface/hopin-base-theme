@@ -14,7 +14,7 @@
   "devDependencies": {
     "@hopin/hugo-styleguide": "0.0.118",
     "@hopin/wbt-clean": "0.0.72",
-    "@hopin/wbt-css": "0.0.71",
+    "@hopin/wbt-css": "0.0.72",
     "@hopin/wbt-ts-browser": "0.0.72",
     "ava": "3.5.2",
     "dir-compare": "2.2.0",
