@@ -1,5 +1,5 @@
 <head>
-  <title>{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+  <title>{{ .Title | default .Site.Title }}{{ if (and (not .IsHome) .Site.Params.shorttitle) }} - {{ .Site.Params.shorttitle }}{{ end }}</title>
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Description" content="{{ $.Site.Params.description }}">
