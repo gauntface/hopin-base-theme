@@ -1,20 +1,18 @@
 <!-- Since we are in a dev environment, we want the unminified version of everything -->
 {{- define "base-load-dev-assets-file" -}}
-  {{- if not (strings.HasPrefix $.name "_") -}}
-    <!-- For each static directory we want to strip anything before static -->
-    {{- $sections := split $.path "static" -}}
-    {{- $path := index $sections 1 -}}
+  <!-- For each static directory we want to strip anything before static -->
+  {{- $sections := split $.path "static" -}}
+  {{- $path := index $sections 1 -}}
 
-    <!-- Add all the css files. -->
-    {{- if (strings.HasSuffix $path ".css") -}}
-      <link rel="stylesheet" href="{{- $path -}}">
-    {{ end -}}
+  <!-- Add all the css files. -->
+  {{- if (strings.HasSuffix $path ".css") -}}
+    <link rel="stylesheet" href="{{- $path -}}">
+  {{ end -}}
 
-    <!-- Add all the JS files. -->
-    {{- if (strings.HasSuffix $path ".js") -}}
-      <script type="text/javascript" src="{{- $path -}}"></script>
-    {{ end -}}
-  {{- end -}}
+  <!-- Add all the JS files. -->
+  {{- if (strings.HasSuffix $path ".js") -}}
+    <script type="text/javascript" src="{{- $path -}}"></script>
+  {{ end -}}
 {{- end -}}
 
 {{- define "base-load-dev-assets-dir" -}}
@@ -34,4 +32,34 @@
   {{ template "base-load-dev-assets-dir" (dict "dir" .) }}
   {{- end -}}
 {{ end -}}
+
+<!-- Add all the JSON assets. -->
+{{- if $.Site.Data.hopin -}}
+{{- range $.Site.Data.hopin -}}
+  
+  {{- if .css -}}
+  
+  {{- range .css.sync -}}
+  <link rel="stylesheet" href="{{- . -}}">
+  {{ end -}}
+  {{- range .css.async -}}
+  <link rel="stylesheet" href="{{- . -}}">
+  {{ end -}}
+  
+  {{- end -}}
+
+  {{- if .js -}}
+  
+  {{- range .js.sync -}}
+  <script type="text/javascript" src="{{- . -}}"></script>
+  {{ end -}}
+  {{- range .js.async -}}
+  <script type="text/javascript" src="{{- . -}}"></script>
+  {{ end -}}
+  
+  {{- end -}}
+
+{{ end }}
+{{ end -}}
+
 {{- end -}}

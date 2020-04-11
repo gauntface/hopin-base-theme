@@ -93,6 +93,17 @@ gulp.task('restart-server', async () => {
   serverInstance.kill();
 });
 
+gulp.task('watch-theme', () => {
+  const opts = {
+    ignoreInitial: false,
+  };
+  return gulp.watch(
+    [path.join(themeSrc, '**', '*')],
+    opts,
+    gulp.series('build'),
+  );
+});
+
 gulp.task('watch', 
   gulp.series(
     'build-into-site',
