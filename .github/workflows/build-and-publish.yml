@@ -1,11 +1,16 @@
-on: push
 name: Build and Publish
+
+on: push
+
 jobs:
-  all:
-    name: Build and Publish
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.68.3'
     - name: Install
       run: npm install
     - name: Build
@@ -13,7 +18,7 @@ jobs:
     - name: Test
       run: npm run test
     - name: Publish
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/release'
       uses: mikeal/merge-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
