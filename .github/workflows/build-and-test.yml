@@ -1,0 +1,24 @@
+name: Build and Test
+
+on: push
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.68.3'
+    
+    - uses: actions/checkout@v2
+    
+    - name: Install
+      run: npm install
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Test
+      run: npm run test
