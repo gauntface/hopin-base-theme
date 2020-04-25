@@ -3,7 +3,7 @@ name: Publish
 # Run every Saturday @ 13:30 UTC => 6:30 PST
 on:
   schedule:
-    - cron:  '30 16 * * 6'
+    - cron:  '30 13 * * 6'
 
 jobs:
   publish:
