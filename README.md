@@ -1,6 +1,6 @@
 # Hopin Base Hugo Theme
 
-![Build and Publish](https://github.com/gauntface/hopin-base-theme/workflows/Build%20and%20Publish/badge.svg)
+[![Build and Test](https://github.com/gauntface/hopin-base-theme/workflows/Build%20and%20Test/badge.svg)](https://github.com/gauntface/hopin-base-theme/actions?query=workflow%3A%22Build+and+Test%22)
 
 This repo contains a theme to use as a base theme.
 
