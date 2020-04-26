@@ -47,7 +47,9 @@ There are a few optional parameters you will likely want to set in your site con
     "shorttitle": "Base Site",
     "description": "This is the site description",
     "themecolor": "#C0FFEE",
-    "googleanalytics": "UA-123456789-1"
+    "googleanalytics": "UA-123456789-1",
+    "socialimg": "/images/default-social.png",
+    "twittercreator": "@gauntface"
   }
 }
 ```
