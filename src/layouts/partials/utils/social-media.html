@@ -1,0 +1,12 @@
+<meta property="og:title" content="{{ .Title | default .Site.Title }}{{ if (and (not .IsHome) .Site.Params.shorttitle) }} - {{ .Site.Params.shorttitle }}{{ end }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+
+{{ $img := {{ if .Params.socialImg }}{{ .Params.socialImg }}{{ else if .Params.mainImage }}{{ .Params.mainImage }}{{ else if .Site.Params.socialimg }}{{ .Site.Params.socialimg }}{{ end }} }}
+{{ if $img }}
+<meta property="og:image" content="$img">
+<meta name="twitter:card" content="summary_large_image">
+{{ end }}
+{{ if .Site.Params.twittercreator }}
+<meta name="twitter:creator" content="{{ .Site.Params.twittercreator }}">
+{{ end }}
