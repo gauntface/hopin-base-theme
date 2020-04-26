@@ -4,6 +4,7 @@ const tsBrowser = require('@hopin/wbt-ts-browser');
 const css = require('@hopin/wbt-css');
 const clean = require('@hopin/wbt-clean');
 const fs = require('fs-extra');
+const hugo = require('@gauntface/hugo-node');
 const hopinstyleguide = require('@hopin/hugo-styleguide');
 const spawn = require('child_process').spawn;
 const basetheme = require('./index');

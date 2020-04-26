@@ -8,6 +8,8 @@
     "shorttitle": "Base Site",
     "description": "This is an example site",
     "themecolor": "#FFFFFF",
-    "googleanalytics": "UA-123456789-1"
+    "googleanalytics": "UA-123456789-1",
+    "socialimage": "/images/example.png",
+    "twittercreator": "@gauntface"
   }
 }
