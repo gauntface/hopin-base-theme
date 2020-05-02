@@ -1,6 +1,9 @@
 <head>
   <title>{{ .Title | default .Site.Title }}{{ if (and (not .IsHome) .Site.Params.shorttitle) }} - {{ .Site.Params.shorttitle }}{{ end }}</title>
   
+  <!-- Needed to display emoji correctly -->
+  <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
   {{ if $.Site.Params.themecolor }}<meta name="theme-color" content="{{ $.Site.Params.themecolor }}"/>{{ end -}}
