@@ -8,6 +8,7 @@
     "build": "gulp build",
     "build-into-site": "npm install && gulp build-into-site",
     "serve": "cd ./example/ && hugo server -D",
+    "publish": "npm run build && npm run test && npm version patch && npm publish",
     "test": "ava ./test/*-test.js --verbose"
   },
   "license": "MIT",
