@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.306",
+  "version": "0.0.307",
   "scripts": {
     "build": "gulp build",
     "build-into-site": "npm install && gulp build-into-site",
