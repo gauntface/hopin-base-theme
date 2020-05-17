@@ -38,25 +38,31 @@
 {{- range $.Site.Data.hopin -}}
   
   {{- if .css -}}
-  
+    
   {{- range .css.sync -}}
   <link rel="stylesheet" href="{{- . -}}">
   {{ end -}}
   {{- range .css.async -}}
   <link rel="stylesheet" href="{{- . -}}">
   {{ end -}}
-  
+  {{- range .css.preload -}}
+  <link rel="stylesheet" href="{{- . -}}">
+  {{ end -}}
+
   {{- end -}}
 
   {{- if .js -}}
-  
+
   {{- range .js.sync -}}
   <script type="text/javascript" src="{{- . -}}"></script>
   {{ end -}}
   {{- range .js.async -}}
   <script type="text/javascript" src="{{- . -}}"></script>
   {{ end -}}
-  
+  {{- range .js.preload -}}
+  <script type="text/javascript" src="{{- . -}}"></script>
+  {{ end -}}
+
   {{- end -}}
 
 {{ end }}
