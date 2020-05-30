@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@gauntface/hugo-node": "1.0.8",
+    "@gauntface/hugo-node": "1.0.9",
     "@hopin/hugo-styleguide": "0.0.188",
     "@hopin/wbt-clean": "0.0.126",
     "@hopin/wbt-css": "0.0.126",
