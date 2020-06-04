@@ -19,7 +19,7 @@
     "@hopin/wbt-ts-browser": "0.0.126",
     "ava": "3.8.2",
     "dir-compare": "2.3.0",
-    "fs-extra": "9.0.0",
+    "fs-extra": "9.0.1",
     "gulp": "4.0.2"
   },
   "main": "index.js",
