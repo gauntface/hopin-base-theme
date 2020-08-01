@@ -1,9 +1,9 @@
 name: Publish
 
-# Run every Saturday @ 13:30 UTC => 6:30 PST
+# Run every Sunday @ 02:00 UTC => 19:00 PST
 on:
   schedule:
-    - cron:  '30 13 * * 6'
+    - cron:  '0 2 * * 0'
 
 jobs:
   publish:
